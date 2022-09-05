@@ -1,5 +1,5 @@
 #!/bin/bash
-export KUBECONFIG=/Users/cd/onkube/hetzner/kubeconfig
+export KUBECONFIG=/Users/cd/onkube/k3s-hetzner/kubeconfig
 kubectl get no 
 kubectl run --image ubuntu:20.04 ubuntu -- sleep infinity
 kubectl wait --for=condition=ready po ubuntu

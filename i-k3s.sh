@@ -1,5 +1,4 @@
 #!/bin/bash
-
 hcloud server list -o json > list.json
 #export MASTER_IP=`cat list.json | jq -r '.[0].public_net.ipv4.ip'`
 #export NODE01_IP=`cat list.json | jq -r '.[1].public_net.ipv4.ip'`
