@@ -21,10 +21,20 @@ echo 'alias k=kubectl' >> /root/.bashrc
 ### Install brew
 #NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 #brew install hcloud
+#brew install k9s
+
+### K9S
+wget https://github.com/derailed/k9s/releases/download/v0.26.3/k9s_Linux_x86_64.tar.gz
+tar zxf k9s_Linux_x86_64.tar.gz
+cp k9s_Linux_x86_64/k9s /usr/local/bin/
 
 
 ### Install istioctl
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.15.0 sh -
 install -o root -g root -m 0755 /root/istio-1.15.0/bin/istioctl /usr/local/bin/istioctl
+
+### Install wscat
+# apt-get install npm
+# npm install -g wscat
 
 
