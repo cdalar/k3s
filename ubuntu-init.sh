@@ -3,10 +3,10 @@ set -ex
 
 cd ~
 apt-get update
-apt-get install -y vim wget curl jq unzip git
+apt-get install -y vim wget curl jq unzip git bash-completion fzf kubectx
 
 ### install az cli
-#curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 ### Install aws cli
 #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -17,6 +17,13 @@ apt-get install -y vim wget curl jq unzip git
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 echo 'alias k=kubectl' >> /root/.bashrc
+echo 'source <(kubectl completion bash)' >>/root/.bashrc
+echo 'complete -o default -F __start_kubectl k' >>/root/.bashrc
+
+### Install kubectx and kubens
+git clone https://github.com/ahmetb/kubectx /opt/kubectx
+ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
+ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 
 ### Install brew
 #NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -26,7 +33,7 @@ echo 'alias k=kubectl' >> /root/.bashrc
 ### K9S
 wget https://github.com/derailed/k9s/releases/download/v0.26.3/k9s_Linux_x86_64.tar.gz
 tar zxf k9s_Linux_x86_64.tar.gz
-cp k9s_Linux_x86_64/k9s /usr/local/bin/
+mv k9s /usr/local/bin/
 
 
 ### Install istioctl
